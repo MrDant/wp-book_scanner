@@ -1,6 +1,11 @@
 <template>
   <div class="flex gap-1 flex-wrap">
-    <span v-if="!edit" v-html="model" @click="editValue" />
+    <span
+      v-if="!edit"
+      v-html="model"
+      @click="editValue"
+      class="min-h-10 w-full"
+    />
     <template v-else>
       <template v-if="type == 'textarea'">
         <textarea v-model="newValue" class="w-full" @input="auto_grow" />

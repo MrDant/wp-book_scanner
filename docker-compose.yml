@@ -1,6 +1,6 @@
 services:
   traefik:
-    container_name: traefik
+    container_name: wp-book-traefik
     image: traefik:v3.3
     ports:
       - "80:80"
@@ -13,7 +13,7 @@ services:
 
   wordpress:
     image: wordpress
-    container_name: wp
+    container_name: wp-book
     restart: always
     ports:
       - "80"
