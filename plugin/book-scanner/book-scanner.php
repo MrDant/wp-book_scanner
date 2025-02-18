@@ -225,6 +225,9 @@ class BookScannerPlugin {
             case 'image/gif':
                 $extension = 'gif';
                 break;
+            case 'image/jpeg':
+                $extension = 'jpeg';
+                break;
             default:
                 $extension = 'jpg';
                 break;
