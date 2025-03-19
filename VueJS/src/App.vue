@@ -119,8 +119,12 @@ async function getBookByGoodReads() {
   let form_data = new FormData();
   form_data.append("action", "scan_book");
   form_data.append("isbn", isbn.value);
-  const book = (await axios.post(wp_data.ajax_url, form_data)).data.data;
-  return { ...book, stock_quantity: 1, isbn: isbn.value };
+  try {
+    const book = (await axios.post(wp_data.ajax_url, form_data)).data.data;
+    return { ...book, stock_quantity: 1, isbn: isbn.value };
+  } catch {
+    return {};
+  }
 }
 
 onMounted(() => {

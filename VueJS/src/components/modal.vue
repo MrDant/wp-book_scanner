@@ -16,10 +16,10 @@
           </div>
         </div>
         <h1 class="font-bold text-sky-500">
-          <EditInput v-model="form.name" />
+          <EditInput v-model="form.name" empty="Livre inconnu" />
         </h1>
         <i class="text-sm leading-none">
-          <ArrayStringEdit v-model="form.author" />
+          <ArrayStringEdit v-model="form.author" empty="Auteur inconnu" />
         </i>
         <p class="text-sm underline mt-2">Description :</p>
         <EditInput

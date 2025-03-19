@@ -1,11 +1,9 @@
 <template>
   <div class="flex gap-1 flex-wrap">
-    <span
-      v-if="!edit"
-      v-html="model"
-      @click="editValue"
-      class="min-h-10 w-full"
-    />
+    <template v-if="!edit">
+      <span v-if="!model && empty" @click="editValue">{{ empty }}</span>
+      <span v-else v-html="model" @click="editValue" class="min-h-10 w-full" />
+    </template>
     <template v-else>
       <template v-if="type == 'textarea'">
         <textarea v-model="newValue" class="w-full" @input="auto_grow" />
@@ -28,6 +26,10 @@
 <script setup>
 import { ref, defineModel, defineProps } from "vue";
 const model = defineModel();
+const { type, empty } = defineProps({
+  type: { default: "text" },
+  empty: {},
+});
 const newValue = ref("");
 const edit = ref(false);
 
@@ -41,7 +43,6 @@ function editValue() {
   newValue.value = model.value;
   edit.value = true;
 }
-const { type } = defineProps({ type: { default: "text" } });
 </script>
 
 <style scoped>

@@ -1,17 +1,23 @@
 <template>
-  <div class="cursor-pointer flex gap-1">
+  <div class="cursor-pointer flex gap-1 min-h-3">
     <template v-if="edit == true">
       <input v-model="newValue" />
       <button @click="save()" class="cursor-pointer">v</button>
     </template>
-    <p v-else @click="editValue">{{ value }}</p>
+    <template v-else>
+      <p v-if="!value" @click="editValue">{{ empty }}</p>
+      <p v-else @click="editValue">{{ value }}</p>
+    </template>
   </div>
 </template>
 <script setup>
-import { ref, computed, defineModel } from "vue";
+import { ref, computed, defineModel, defineProps } from "vue";
 const edit = ref(false);
 const model = defineModel();
-const value = computed(() => model.value.join(", "));
+const { empty } = defineProps(["empty"]);
+const value = computed(() => {
+  return Array.isArray(model.value) ? model.value.join(", ") : model.value;
+});
 const newValue = ref("");
 
 function editValue() {
